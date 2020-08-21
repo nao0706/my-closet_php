@@ -67,65 +67,62 @@
   <div class="container">
     <div class="row">
       <div id="cloth-list">
-      
-        <?php
-            try{
+      <?php
+          try{
 
-                $dsn = 'mysql:dbname=mycloset;host=localhost;charset=utf8';
-                $user = 'root';
-                $password = 'root';
-                $dbh = new PDO($dsn, $user, $password);
-                $dbh->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+              $dsn = 'mysql:dbname=mycloset;host=localhost;charset=utf8';
+              $user = 'root';
+              $password = 'root';
+              $dbh = new PDO($dsn, $user, $password);
+              $dbh->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-                $sql = 'SELECT * FROM mycode WHERE 1';
-                $stmt = $dbh->prepare($sql);
-                $stmt->execute();
+              $sql = 'SELECT * FROM mycode WHERE 1';
+              $stmt = $dbh->prepare($sql);
+              $stmt->execute();
 
-                $dbh = null;
+              $dbh = null;
 
-                
-                print('<form  method="post" action="mycode_branch.php">');
-                
-                while(true){
+              
+              print('<form  method="post" action="mycode_branch.php">');
+        
 
-                    $rec=$stmt->fetch(PDO::FETCH_ASSOC);
-                    $picture_data=$rec['data'];
-                    $picture_name=$rec['name'];
-                    $picture_code=$rec['code'];
+              while(true){
 
-                    if($rec == false){
+                  $rec=$stmt->fetch(PDO::FETCH_ASSOC);
+                  $picture_data=$rec['data'];
+                  $picture_name=$rec['name'];
+                  $picture_code=$rec['code'];
 
-                        break;
-                    }
+                  if($rec == false){
 
-                    print('<div class="cloth-item">');
-                    //print('<div class="cloth-item" value="'.$picture_code.'">');
-                    //ラジオボタンにcodeを付与する
+                      break;
+                  }
+
+                  print('<div class="cloth-item">');
+                      //ラジオボタンにcodeを付与する
                       print('<input type="radio" name="picturecode" value="'.$picture_code.'">');
                       print('<div><img  src="../../images/mycode/'.$picture_data.'"></div>');
                       print('<h5>'.$picture_name.'</h5>');
                       //ラジオボタンを作らずにhiddenを利用してみたが不具合が起きた。
                       /*print('<input type="hidden" name="picturecode" value="'.$picture_code.'">');*/
                       print('<div id="cloth-delete"><input type="submit" name="delete" value="削除"></div>');
-                    print('</div>');/*<!--cloth-item-->*/
-              
-              
+                  print('</div>');/*cloth-item*/
+            
 
-                
-                    
-                }
-                
               
-                print('</form>');
+                  
+              }
 
-            }
-            catch(Exception $e){
-              print("接続エラー:{$e->getMessage()}");
-                exit();
-            }
-          ?>
-        
-      </div><!--cloth-list-->
+            
+              print('</form>');
+
+          }
+          catch(Exception $e){
+            print("接続エラー:{$e->getMessage()}");
+              exit();
+          }
+        ?>
+        </div><!--cloth-list-->
     </div><!--row-->
   </div><!--container-->
 </div><!--main-->
