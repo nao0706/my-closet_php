@@ -219,7 +219,14 @@
 }
 
 img{
-  width: 50%;
+  width: 100%;
+}
+
+#cloth-list {
+  display: flex;
+  margin: 20px auto;
+  width: 100%;
+  max-width: 1200px;
 }
 
 #cloth-item h5 {
@@ -235,16 +242,9 @@ img{
 }
 */
 
-/*
-#cloth-list {
-  width: 300px;
-  height: 300px;
-    
-  margin: 20px auto;
-  width: 100%;
-  max-width: 1200px;
-}
-*/
+
+
+
 .cloth-item {
   width: 25%;
   margin-bottom: 3%;
